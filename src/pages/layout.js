@@ -43,7 +43,6 @@ export default function Layout({ home }) {
     }
 
     let isLogin = getSessionData();
-    console.log(getSessionData())
 
     return (
         <>

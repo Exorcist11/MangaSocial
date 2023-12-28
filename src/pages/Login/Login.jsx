@@ -1,180 +1,93 @@
-import React, { useState } from "react";
-import { Button, Form } from "antd";
-import axios from "axios";
+import React, { useState } from 'react'
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 import * as message from "../../components/Message/Message";
-import { useNavigate } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
-import { useDispatch } from "react-redux";
-import { updateUser } from "../../Redux/Feature/userSlice";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState('')
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+export default function Login() {
+  const [input, setInput] = useState('')
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(true)
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleLogin = async (value) => {
-
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInput((preState) => ({
+      ...preState,
+      [name]: value
+    }))
   }
 
-  const onFinish = async (values) => {
-    setLoading(true);
-    console.log("Success:", values);
+  const loginSubmit = async () => {
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:2077/login",
-        values
-      );
-      console.log(response)
-
-      // sessionStorage.setItem('user', response)
-      // message.success("Login is successfully");
-      // console.log("response.data.account", response.data.account);
-      // dispatch(updateUser(response.data.account));
-      // navigate("/");
-    } catch (error) {
-      console.log('Error: ', error)
-    }
-    setLoading(false);
-
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  const validateEmail = (rule, value, callback) => {
-    if (!value) {
-      callback("Please input your email.");
-    } else {
-      const trimmedValue = value.trim(); // Remove leading and trailing spaces
-      if (trimmedValue === value) {
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (!emailRegex.test(trimmedValue)) {
-          callback("Email is not valid.");
-        } else {
-          callback();
-        }
+      const response = await axios.post('http://127.0.0.1:2077/login', input);
+      if (response?.data.errCode !== 200) {
+        message.error(response.data.message)
       } else {
-        callback("Email should not contain leading or trailing spaces.");
+        message.success(response.data.message)
+        sessionStorage.setItem('user', response?.data.account)
+        navigate('/')
       }
+    } catch (error) {
+      console.log(error)
     }
-  };
+  }
 
-  // const validatePassword = (rule, value, callback) => {
-  //   const regex =
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
-  //   if (!value) {
-  //     callback("Please input your password.");
-  //   } else if (!regex.test(value)) {
-  //     callback(
-  //       "Password must be 8-16 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character."
-  //     );
-  //   } else {
-  //     callback();
-  //   }
-  // };
-
-  const HandleNavigateToSignUp = () => {
-    navigate("/sign-up");
-  };
+  const handleSubmit = async () => {
+    await loginSubmit()
+  }
 
   return (
-    <div
-      className="bg-cover bg-center  h-[100vh] w-[100vw] md:h-[100%] md:w-[100%] flex items-center justify-center opacity-75"
-      style={{ backgroundImage: "url('/images/Login/slide1.jpg')" }}
-    >
-      <Loading isLoading={loading}>
-        <div className="flex flex-col items-center justify-center w-[520px] h-[746px] rounded-[12px] gap-[31px] md:bg-[#242424] mt-[20px] md:mt-[100px] md:mb-[100px] px-[15px] md:px-[74px] py-[60px]">
-          <div className="font-semibold text-3xl text-white mb-4">Login</div>
-          <div className="text-[14px] leading-[20px] md:text-[24px] md:leading-[28px] font-semibold text-white text-center">
-            You can use your app or account to login
-          </div>
-          {/* <Form
-            name="basic"
-            wrapperCol={{
-              span: 24,
-            }}
-            onClick={handleLogin}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-            className="w-[328px] md:w-full  "
-          >
-            <Form.Item
-              name="email"
-              rules={[
-                {
-                  validator: validateEmail,
-                },
-              ]}
-            >
-              <input
-                id="email"
-                name="email"
-                className="w-full bg-[#353434] h-[44px] rounded-[12px] p-[10px] mb-1 text-white placeholder-white placeholder-opacity-75"
-                placeholder="Enter your email"
-              />
-            </Form.Item>
+    <div className="bg-[url('/public/images/Login/bg-login.jpeg')] h-screen w-screen bg-cover bg-center bg-no-repeat ">
+      <div className='flex justify-center items-center h-full font-semibold'>
+        <div className='w-[520px] h-[746px] bg-[#353434] flex flex-col gap-[31px] items-center justify-center rounded-xl  '>
 
-            <div className="relative ">
-              <Form.Item
-                name="password"
-                rules={[
-                  {
-                    //validator: validatePassword, // Add this validator for password
-                  },
-                ]}
-              >
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  className="w-full bg-[#353434] h-[44px] rounded-[12px] p-[10px]  mb-1 mt-1 text-white placeholder-white placeholder-opacity-75"
-                  placeholder="Password"
-                ></input>
-              </Form.Item>
-              <img
-                src="/images/Login/icon.png"
-                className="h-[24px] w-[24px] absolute top-3 right-3 cursor-pointer"
-                alt=""
-                onClick={toggleShowPassword}
-              />
-            </div>
-
-            <Form.Item wrapperCol={{ span: 24 }} className="mt-1">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="w-full h-[44px] rounded-[12px] p-[10px] bg-[#EA6016] focus:outline-none hover:bg-[#929292] border-none "
-              >
-                LOG IN
-              </Button>
-            </Form.Item>
-          </Form> */}
-          <div className="font-semibold text-[16px] leading-[24px] text-[#EA6016] cursor-pointer">
-            Forgot Password?
+          <div className='flex items-center flex-col gap-3 '>
+            <h1 className='text-4xl  text-white'>Login</h1>
+            <h1 className='text-xl text-white'>You can use your app or account to login</h1>
           </div>
 
-          <div className="flex items-center justify-center gap-1.5 mt-40 md:mt-0">
-            <div className="font-semibold text-[16px] leading-[24px] text-[#747474] ">
-              Don’t have an account?
+          <div className='w-[378px] text-base text-white flex flex-col gap-3'>
+            <div className='w-full p-[10px] bg-[#747474] rounded-md'>
+              <input className='w-full border-none outline-none bg-transparent opacity-100' placeholder='Enter your email' type='email' name='email' onChange={handleOnChange} />
             </div>
-            <div
-              className="font-semibold text-[16px] leading-[24px] text-[#EA6016] cursor-pointer"
-              onClick={HandleNavigateToSignUp}
-            >
-              Sign up
+
+            <div className='w-full p-[10px] bg-[#747474] rounded-md flex items-center'>
+              <input className='w-full border-none outline-none bg-transparent opacity-100' placeholder='Password' type={hidden ? 'password' : 'text'} name='password' onChange={handleOnChange} />
+              {hidden ? <IoMdEyeOff size={26} className='cursor-pointer' onClick={() => setHidden(!hidden)} /> : <IoEye size={26} className='cursor-pointer' onClick={() => setHidden(!hidden)} />}
+            </div>
+
+            <div className='w-full p-[10px] bg-[#929292] rounded-md hover:bg-[#EA6016] cursor-pointer'>
+              <input className='w-full border-none outline-none text-white opacity-100 uppercase bg-transparent cursor-pointer' type='submit' value={'Log in'} onClick={handleSubmit} />
             </div>
           </div>
+
+          <div>
+            <h1 className='text-[#EA6016] cursor-pointer hover:underline hover:font-extrabold text-base'>
+              Forgot Password?
+            </h1>
+          </div>
+
+          <div className='flex items-center gap-3'>
+            <img src='https://raw.githubusercontent.com/Exorcist11/MangaSocial/main/public/images/Login/QR.png' alt="" className='w-[50px] h-[50px]' />
+            <h1 className='text-[#EA6016] cursor-pointer hover:font-extrabold text-bases'>Scan QR Code to Login</h1>
+          </div>
+
+          <div className="relative flex py-5 items-center w-[378px]">
+            <div className="flex-grow border-t border-gray-400"></div>
+            <span className="flex-shrink mx-4 text-gray-400">Or Continue with</span>
+            <div className="flex-grow border-t border-gray-400"></div>
+          </div>
+
+
+          <div className='flex gap-1 cursor-pointer hover:font-extrabold text-bases'>
+            <h1 className='text-[#747474]'>Don't have an account?</h1>
+            <p className='text-[#EA6016] hover:underline' onClick={() => navigate('/sign-up')}>Sign up</p>
+          </div>
+
         </div>
-      </Loading>
-    </div>
-  );
-};
-
-export default Login;
+      </div>
+    </div >
+  )
+}
