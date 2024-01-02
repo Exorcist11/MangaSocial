@@ -69,7 +69,6 @@ const ChapterPage = () => {
     { src: '/images/ChapterPage/SA.png', title: 'SA' },
   ]
 
-
   return (
     <div>
       <div
@@ -225,25 +224,25 @@ const ChapterPage = () => {
             <div className="flex flex-col gap-[8px] md:gap-[40px]">
               {/* info chapter */}
               <div className="flex flex-col gap-[8px] md:gap-[16px]">
-                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[28px]  md:leading-[36px] flex items-center gap-2">
+                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Author:
                   <div className="text-white">{chapterDetail?.author}</div>
                 </div>
-                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[28px]  md:leading-[36px] flex items-center gap-2">
+                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Artist:
                   <div className="text-white">Some Name</div>
                 </div>
-                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[28px]  md:leading-[36px] flex flex-wrap items-center gap-2">
+                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex flex-wrap items-center gap-2">
                   Genres:
                   <div className="text-white">{chapterDetail?.categories}</div>
                 </div>
-                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[28px]  md:leading-[36px] flex items-center gap-2">
+                <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Age:
                   <div className="text-white">18+</div>
                 </div>
                 {/* desc */}
-                <div>
-                  <p className="w-[223px] h-auto text-[11px] font-medium leading-[16px]  md:w-[747px] md:font-normal md:text-[28px] md:leading-[36px] text-white">
+                <div className="">
+                  <p className="w-[223px] h-auto text-[11px] font-medium leading-[16px]  md:w-[1000px] md:font-normal md:text-[24px] md:leading-[36px] text-white">
                     {showFullDescription ? fullDescription : truncatedDescription}
                     {!showFullDescription && (
                       <button onClick={() => setShowFullDescription(true)}>
