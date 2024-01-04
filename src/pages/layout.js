@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import SubMenu from "../components/SubMenu/SubMenu";
+import platform from "platform";
+import { useEffect } from "react";
 export default function Layout({ home }) {
     const [isHovered, setIsHovered] = useState(false);
     const [isServerHovered, setIsServerHovered] = useState(false);
+    const [link, setLink] = useState("");
 
     //handle search
     const [input, setInput] = useState("")
@@ -43,7 +46,29 @@ export default function Layout({ home }) {
     }
 
     let isLogin = getSessionData();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState("");
 
+    useEffect(() => {
+        const os = platform.os.family;
+
+        if (os === "iOS") {
+            setModalContent(ios);
+            setIsModalOpen(true);
+            setLink(
+                "https://apps.apple.com/us/app/manga-reader-mangakomi-online/id6446646720"
+            );
+        } else if (os === "Android") {
+            setModalContent(adroi);
+            setIsModalOpen(true);
+
+            setLink(
+                "https://play.google.com/store/apps/details?id=com.thinkdiffai.futurelove"
+            );
+        } else {
+            console.log("Đây là laptop");
+        }
+    }, []);
     return (
         <>
             <div className="header-top">
@@ -98,6 +123,9 @@ export default function Layout({ home }) {
                         />
                     </div>
                     <Link to="/contact-us"><p className="contact">Contact us</p></Link>
+                    <Link to={`https://apps.apple.com/us/app/manga-reader-mangakomi-online/id6446646720`}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="" className="w-5 h-5 lg:w-12 lg:h-12 hover:scale-105 transition-all cursor-pointer" />
+                    </Link>
                 </div>
                 <div className="avatar_search">
                     <img src="/images/search.svg " alt="search"></img>
@@ -127,6 +155,24 @@ export default function Layout({ home }) {
                 </div>
             </div>
             <Outlet></Outlet>
+
+            {isModalOpen && (
+                <div className="absolute inset-0 flex items-center justify-center ">
+                    <div className="fixed inset-0 bg-black opacity-50"></div>
+                    <div className="z-10 p-8 text-center bg-white rounded-md">
+                        <h2 className="mb-4 text-2xl font-bold">Dowload App</h2>
+                        <Link to={link}>
+                            <img src={modalContent} alt="ios" style={{ width: "200px" }} />
+                        </Link>
+                        <button
+                            onClick={closeModal}
+                            className="px-4 py-2 mt-4 text-white bg-red-500 rounded"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
