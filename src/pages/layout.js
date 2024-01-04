@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import SubMenu from "../components/SubMenu/SubMenu";
 import platform from "platform";
+import ios from "../pages/img/ios.png";
+import adroi from "../pages/img/adroi.png";
 import { useEffect } from "react";
 export default function Layout({ home }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -59,9 +61,9 @@ export default function Layout({ home }) {
                 "https://apps.apple.com/us/app/manga-reader-mangakomi-online/id6446646720"
             );
         } else if (os === "Android") {
+            console.log('androi');
             setModalContent(adroi);
             setIsModalOpen(true);
-
             setLink(
                 "https://play.google.com/store/apps/details?id=com.thinkdiffai.futurelove"
             );
@@ -69,6 +71,11 @@ export default function Layout({ home }) {
             console.log("Đây là laptop");
         }
     }, []);
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <>
             <div className="header-top">
