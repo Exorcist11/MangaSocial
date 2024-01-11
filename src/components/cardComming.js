@@ -1,6 +1,7 @@
 import React from "react";
 
-const CardComming = ({ poster, title, rate, update }) => {
+const CardComming = ({ poster, title, genres, update }) => {
+
     return (
         <div className=" cursor-pointer">
             <div className="ease-in-out duration-300 hover:scale-105 transition">
@@ -17,15 +18,14 @@ const CardComming = ({ poster, title, rate, update }) => {
                     </p>
                 </div>
                 <div className="flex items-center gap-3 py-3">
-                    <div className="p-[10px] rounded-[33px] bg-[#363636]">
-                        <p className="text-[20px]">Written Stories</p>
-                    </div>
-                    <div className="p-[10px] rounded-[33px] bg-[#363636]">
-                        <p className="text-[20px]">Series</p>
-                    </div>
-                    <div className="p-[10px] rounded-[33px] bg-[#363636]">
-                        <p className="text-[20px]">Adventure</p>
-                    </div>
+                    {
+                        genres.split(',').slice(0, 5)?.map((item, index) => (
+                            <div className="p-[10px] rounded-[33px] bg-[#363636]" key={index}>
+                                <p className="text-[20px]">{item}</p>
+                            </div>
+                        ))
+                    }
+
                 </div>
                 <p className="lg:text-[20px] 2xl:text-[22px] leading-8 font-semibold">
                     Expected realease date: {update}

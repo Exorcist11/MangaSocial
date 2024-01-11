@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Page_Recent = () => {
     const comicRecent = useFetch(4);
+
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="">
@@ -19,6 +20,8 @@ const Page_Recent = () => {
                         title={item?.title_manga}
                         rate={item?.rate}
                         update={item.time_release}
+                        path_segment={item?.path_segment_manga}
+
                     />
                 ))}
             </div>

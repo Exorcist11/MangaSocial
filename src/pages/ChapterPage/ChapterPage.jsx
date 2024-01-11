@@ -12,6 +12,7 @@ const ChapterPage = () => {
   const params = useParams();
   const { slug } = params;
 
+
   const handleShowTab = () => {
     setShowTab(!showTab);
   };

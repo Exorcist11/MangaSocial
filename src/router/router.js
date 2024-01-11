@@ -16,6 +16,8 @@ import Page_Comming from "../pages/Comming/Comming";
 import ChapterPage from "../pages/ChapterPage/ChapterPage";
 import ReadChapter from "../pages/ReadChapter/ReadChapter";
 import Test from "../pages/Test/Test.jsx";
+import MangaCategory from "../pages/MangaCategory/MangaCategory.jsx";
+import ItemManga from "../components/MangaItem/ItemManga.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +67,10 @@ const router = createBrowserRouter([
         path: "chapter/:slug/:id",
         element: <ReadChapter />,
       },
+      {
+        path: "genres/:category",
+        element: <MangaCategory />
+      }
     ],
   },
   {
@@ -76,8 +82,8 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: '/test/:slug',
-    element: <Test />
+    path: '/test',
+    element: <ItemManga />
   }
 ]);
 export default router;

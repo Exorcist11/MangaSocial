@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Inter", sans-serif;
   font-family: "Poppins", sans-serif;
@@ -10,7 +11,9 @@ body {
 
 .cont {
   background-color: black;
+  width: 100vw;
 }
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@200;300&display=swap");
 @import "navigation";
 @import "slider";

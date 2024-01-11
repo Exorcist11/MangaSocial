@@ -19,6 +19,8 @@ const Page_Comming = () => {
                         title={item?.title_manga}
                         rate={item?.rate}
                         update={item.time_release}
+                        path_segment={item?.path_segment_manga}
+
                     />
                 ))}
             </div>

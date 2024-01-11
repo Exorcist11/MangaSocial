@@ -18,6 +18,9 @@ import { Link } from "react-router-dom";
 import NewUsers from "../components/newUsers";
 import Comments from "../components/comments";
 import NewRelease from "../components/newRelease";
+import Page_Comedy from "./Comedy/Comedy";
+import Page_Recommended from "./Recommended/Recommended";
+
 export default function Index() {
   return (
     <>
@@ -43,6 +46,7 @@ export default function Index() {
         <div className="slider slider3">
           <SliderImg3 arrImage3={[slider8, slider9]}></SliderImg3>
         </div>
+
         <div className="title-released-comic">
           <h2>Recent Comics</h2>
           <Link to="/recent">
@@ -50,13 +54,14 @@ export default function Index() {
           </Link>
         </div>
         <ComicRecent></ComicRecent>
+
         <div className="title-released-comic">
           <h2>Recommnended Comics</h2>
           <Link to="/recent">
             <p>See all</p>
           </Link>
         </div>
-        <ComicRecent></ComicRecent>
+        <Page_Recommended />
         <div className="title-released-comic">
           <h2>Comming Soon Comics</h2>
           <Link to="/commingsoon">
@@ -71,16 +76,17 @@ export default function Index() {
           </Link>
         </div>
         <ComicRecent></ComicRecent>
+
         <div className="title-released-comic">
           <h2>Comedy Comics</h2>
           <Link>
             <p>See all</p>
           </Link>
         </div>
-        <ComicRecent></ComicRecent>
+        <Page_Comedy />
         <div className="title-released-comic">
           <h2>Free Comics</h2>
-          <Link>
+          <Link to={`/`}>
             <p>See all</p>
           </Link>
         </div>

@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Page_NewRelease = () => {
     const newRelease = useFetch(1);
+
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="">
@@ -19,6 +20,8 @@ const Page_NewRelease = () => {
                         title={item?.title_manga}
                         rate={item?.rate}
                         update={item.time_release}
+                        path_segment={item?.path_segment_manga}
+
                     />
                 ))}
             </div>

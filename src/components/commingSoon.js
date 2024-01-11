@@ -6,6 +6,7 @@ import useFetch from "../hooks/useFetch";
 const CommingSoon = () => {
     const commingSoon = useFetch(3);
 
+
     const firstThreeItem = commingSoon.slice(0, 3);
 
     return (
@@ -15,7 +16,7 @@ const CommingSoon = () => {
                     key={index}
                     poster={item?.image_poster_link_goc}
                     title={item?.title_manga}
-                    rate={item?.rate}
+                    genres={item?.categories}
                     update={item.time_release}
                 />
             ))}
