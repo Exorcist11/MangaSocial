@@ -27,7 +27,7 @@ const Rank = () => {
                         rank={index + 1}
                         categories={item?.categories}
                         title={item?.title_manga}
-                        poster={item?.image_poster}
+                        poster={item?.image_poster_link_goc}
                     />
                 ))}
             </div>

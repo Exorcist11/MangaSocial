@@ -1,6 +1,5 @@
 import SliderImg from "../components/sliderImg";
 import SliderImg2 from "../components/sliderImg2";
-import SliderImg3 from "../components/sliderImg3";
 import CommingSoon from "../components/commingSoon";
 import slider1 from "../assets/imgSlider/Rectangle 1.svg";
 import slider2 from "../assets/imgSlider/image 6.svg";
@@ -9,8 +8,6 @@ import slider4 from "../assets/imgSlider/image 9.svg";
 import slider5 from "../assets/imgSlider/image 5.svg";
 import slider6 from "../assets/imgSlider/image 7.png";
 import slider7 from "../assets/imgSlider/Vector 3.png";
-import slider8 from "../assets/imgSlider/slider8.svg";
-import slider9 from "../assets/imgSlider/sliderImgManga.png";
 import Rank from "../components/rank";
 import ComicRecent from "../components/comicRecent";
 import News from "../components/news";
@@ -20,6 +17,7 @@ import Comments from "../components/comments";
 import NewRelease from "../components/newRelease";
 import Page_Comedy from "./Comedy/Comedy";
 import Page_Recommended from "./Recommended/Recommended";
+import BestComicOfWeek from "./bestComicOfWeek/BestComicOfWeek";
 
 export default function Index() {
   return (
@@ -43,10 +41,6 @@ export default function Index() {
         </div>
         <NewRelease></NewRelease>
 
-        <div className="slider slider3">
-          <SliderImg3 arrImage3={[slider8, slider9]}></SliderImg3>
-        </div>
-
         <div className="title-released-comic">
           <h2>Recent Comics</h2>
           <Link to="/recent">
@@ -69,13 +63,14 @@ export default function Index() {
           </Link>
         </div>
         <CommingSoon></CommingSoon>
+
         <div className="title-released-comic">
           <h2>Top 15 Best Comics of the Week</h2>
           <Link>
             <p>See all</p>
           </Link>
         </div>
-        <ComicRecent></ComicRecent>
+        <BestComicOfWeek />
 
         <div className="title-released-comic">
           <h2>Comedy Comics</h2>
@@ -85,7 +80,7 @@ export default function Index() {
         </div>
         <Page_Comedy />
         <div className="title-released-comic">
-          <h2>Free Comics</h2>
+          <h2>Free Comicss</h2>
           <Link to={`/`}>
             <p>See all</p>
           </Link>
