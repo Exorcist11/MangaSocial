@@ -18,6 +18,8 @@ import ReadChapter from "../pages/ReadChapter/ReadChapter";
 import Test from "../pages/Test/Test.jsx";
 import MangaCategory from "../pages/MangaCategory/MangaCategory.jsx";
 import ItemManga from "../components/MangaItem/ItemManga.jsx";
+import ViewCategory from "../pages/ViewCategory/ViewCategory.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,8 +71,12 @@ const router = createBrowserRouter([
       },
       {
         path: "genres/:category",
-        element: <MangaCategory />
-      }
+        element: <MangaCategory />,
+      },
+      {
+        path: "/all-category",
+        element: <ViewCategory />,
+      },
     ],
   },
   {
@@ -82,8 +88,8 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: '/test',
-    element: <ItemManga />
-  }
+    path: "/test",
+    element: <ItemManga />,
+  },
 ]);
 export default router;
