@@ -20,6 +20,7 @@ import MangaCategory from "../pages/MangaCategory/MangaCategory.jsx";
 import ItemManga from "../components/MangaItem/ItemManga.jsx";
 import ViewCategory from "../pages/ViewCategory/ViewCategory.jsx";
 import Policy from "../pages/Policy/Policy.jsx";
+import MangaText from "../pages/MangaText/MangaText.jsx";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "/all-category",
         element: <ViewCategory />,
+      },
+      {
+        path: "/manga-text",
+        element: <MangaText />,
       },
     ],
   },
