@@ -19,6 +19,7 @@ import Test from "../pages/Test/Test.jsx";
 import MangaCategory from "../pages/MangaCategory/MangaCategory.jsx";
 import ItemManga from "../components/MangaItem/ItemManga.jsx";
 import ViewCategory from "../pages/ViewCategory/ViewCategory.jsx";
+import Policy from "../pages/Policy/Policy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/policy",
+        element: <Policy />,
       },
       {
         path: "/user-profile",

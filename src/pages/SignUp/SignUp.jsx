@@ -23,7 +23,7 @@ const SignUp = () => {
         values
       );
       message.success("Signup is successfully");
-      console.log(response);
+
       navigate("/login");
     } catch (error) {
       message.error(`${error.response.data.message}`);
