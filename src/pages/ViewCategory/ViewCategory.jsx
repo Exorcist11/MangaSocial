@@ -26,7 +26,6 @@ const ViewCategory = () => {
     fetchData();
   }, []); // Dependency array trống đồng nghĩa với việc gọi chỉ khi component mount
 
-  console.log(data);
   return (
     <div className="bg-black  shadow-xl shadow-red-600">
       <h1 className="flex justify-center pt-[30px] pb-[30px] font-bold text-[57px] text-white">

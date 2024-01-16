@@ -25,7 +25,7 @@ const Page_Genres = () => {
 
     return result;
   }
-  console.log(genres);
+
   return (
     <div className="Wapper_Genres">
       <div className="Wapper_Genres-slide">
